@@ -29,12 +29,7 @@
                             Category
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li v-for="(category, i) in categories" :key="i" class="dropdown-item" @click="selectCategory(category)">{{ category }}</li>
                             </ul>
                         </li>
                     </ul>
@@ -43,3 +38,31 @@
         </div>
     </nav>
 </template>
+<script>
+import {mapActions, mapState} from 'vuex'
+
+export default {
+    computed: {
+        ...mapState('products', {
+            categories: 'categories',
+        })
+    },
+    methods: {
+        ...mapActions({
+            fetchCategories: 'products/fetchCategories'
+        }),
+        selectCategory(category) {
+            this.$store.commit('products/setSelectedCategory', category);
+        }
+    },
+    mounted() {
+        this.fetchCategories();
+    }
+}
+
+</script>
+<style scoped>
+    .dropdown-item {
+        cursor: pointer;
+    }
+</style>

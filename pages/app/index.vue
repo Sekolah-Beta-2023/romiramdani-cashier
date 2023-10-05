@@ -1,6 +1,8 @@
 <template>
-    <div class="container">
+    <div>
         <NavBar />
+        <CardProduct />
+        <OrderProduct />
     </div>
 </template>
 <script>
