@@ -21,16 +21,16 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
+                                Category
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li v-for="(category, i) in categories" :key="i" class="dropdown-item" @click="selectCategory(category)">{{ category }}</li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <nuxt-link class="nav-link" to="/">Logout</nuxt-link>
                         </li>
                     </ul>
                 </div>
