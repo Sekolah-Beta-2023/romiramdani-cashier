@@ -4,6 +4,12 @@ export const state = () => ({
     selectedCategory: null,
 });
 
+export const getters = {
+    currency : () => (amount) => {
+        return Intl.NumberFormat('en-US').format(parseInt(amount) * 15500)
+    }
+}
+
 export const mutations = {
     setProducts(state, products) {
         state.products = products;

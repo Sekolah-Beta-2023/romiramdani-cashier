@@ -1,8 +1,10 @@
 <template>
     <div>
         <NavBar />
-        <CardProduct />
-        <OrderProduct />
+        <div class="row mt-5 mx-0">
+            <CardProduct />
+            <OrderProduct />       
+        </div>
     </div>
 </template>
 <script>
