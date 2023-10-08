@@ -11,14 +11,14 @@
                 <!-- Email input -->
                     <div class="row">
                         <div class="col-md-6 mb-3 form-outline">
-                            <input type="text" class="form-control form-control-lg" placeholder="First name"/>
+                            <input type="text" class="form-control form-control-lg" placeholder="username"/>
                         </div>
                         <div class="col-md-6 mb-3 form-outline">
-                            <input type="text"  class="form-control form-control-lg" placeholder="Last name" />
+                            <input type="text"  class="form-control form-control-lg" placeholder="Role" />
                         </div>
                     </div>
                     <input type="email" class="form-control form-control-lg mb-3"
-                    placeholder="Username" />
+                    placeholder="Full name" />
                     <input type="password" class="form-control form-control-lg mb-3"
                     placeholder="Password" />
                     <input type="password" class="form-control form-control-lg mb-3"
