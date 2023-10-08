@@ -19,23 +19,30 @@ import {mapState, mapActions, mapGetters} from "vuex"
         computed: {
             ...mapState('products', {
                 products : 'products',
-                selectedCategory: 'selectedCategory'
+                selectedCategory: 'selectedCategory',
+                searchQuery: 'searchQuery'
             }),
-            ...mapGetters({
-                currency: 'products/currency'
+            ...mapGetters('products',{
+                currency: 'currency'
             }),
             filteredProducts() {
-                if(!this.selectedCategory || this.selectedCategory == 'all') {
-                    return this.products;
+                if(this.selectedCategory && this.selectedCategory !== 'all') {
+                    return this.products.filter(product => product.category === this.selectedCategory)
+                } else if (this.searchQuery) {
+                    return this.products.filter((product) => {
+                        return this.searchQuery.toLowerCase().split(" ").every((v) => product.title.toLowerCase().includes(v));
+                    });
                 }
-                return this.products.filter(product => product.category === this.selectedCategory)
+                return this.products;
             }
         },
         methods: {
-            ...mapActions({
-                fetchProducts: 'products/fetchProducts',
-                addToCart : 'carts/addToCart'
+            ...mapActions('products',{
+                fetchProducts: 'fetchProducts',
             }),
+            ...mapActions('carts', {
+                addToCart : 'addToCart'
+            })
         },
         mounted() {
             this.fetchProducts();

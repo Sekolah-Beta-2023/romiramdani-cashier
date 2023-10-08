@@ -35,11 +35,13 @@ export default {
         ...mapState('carts', {
             items: 'items',
         }),
-        ...mapGetters({
-            cartItems: 'carts/cartItems',
-            itemTotal: 'carts/itemTotal',
-            currency: 'products/currency',
-            subTotal: 'carts/subTotal'
+        ...mapGetters('carts',{
+            cartItems: 'cartItems',
+            itemTotal: 'itemTotal',
+            subTotal: 'subTotal'
+        }),
+        ...mapGetters('products', {
+            currency: 'currency',
         })
     },
     methods: {

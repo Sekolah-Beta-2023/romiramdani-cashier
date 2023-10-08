@@ -8,8 +8,7 @@
                 <a class="navbar-brand mx-5" href="#">Cashier</a>
             </div>
             <form class="d-flex mx-3" role="search">
-                <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input type="text" class="form-control mx-2" placeholder="Search" v-model="searchQuery" @input="updateSearchData">
             </form>
             <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
@@ -39,21 +38,30 @@
     </nav>
 </template>
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapState, mapMutations} from 'vuex'
 
 export default {
+    data() {
+        return {
+            searchQuery: '',
+        }
+    },
     computed: {
         ...mapState('products', {
             categories: 'categories',
         })
     },
     methods: {
-        ...mapActions({
-            fetchCategories: 'products/fetchCategories'
+        ...mapMutations('products', {
+            selectCategory: 'selectCategory',
+            searchProduct: 'searchProduct',
         }),
-        selectCategory(category) {
-            this.$store.commit('products/setSelectedCategory', category);
-        }
+        updateSearchData() {
+            this.searchProduct(this.searchQuery);
+        },
+        ...mapActions('products',{
+            fetchCategories: 'fetchCategories'
+        }),
     },
     mounted() {
         this.fetchCategories();

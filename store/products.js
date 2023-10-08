@@ -2,6 +2,7 @@ export const state = () => ({
     products: [],
     categories: ['all'],
     selectedCategory: null,
+    searchQuery: '',
 });
 
 export const getters = {
@@ -17,8 +18,11 @@ export const mutations = {
     setCategories(state, categories) {
         state.categories.push(...categories);
     },
-    setSelectedCategory(state, category) {
+    selectCategory(state, category) {
         state.selectedCategory = category;
+    },
+    searchProduct(state, query) {
+        state.searchQuery = query;
     }
 };
 
